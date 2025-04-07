@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.application.point;
+package kr.ecommerce.be.server.application.point.dto;
 
 import kr.ecommerce.be.server.domain.point.model.PointHistory;
 

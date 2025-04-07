@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import kr.ecommerce.be.server.domain.point.model.PointHistory;
 import kr.ecommerce.be.server.domain.point.model.PointHistoryType;
 import kr.ecommerce.be.server.domain.point.model.UserPoint;
-import kr.ecommerce.be.server.application.point.PointHistoryDto;
+import kr.ecommerce.be.server.application.point.dto.PointHistoryDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

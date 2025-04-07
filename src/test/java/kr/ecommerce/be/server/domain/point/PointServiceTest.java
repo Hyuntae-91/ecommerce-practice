@@ -4,7 +4,7 @@ import kr.ecommerce.be.server.domain.common.exception.ResourceNotFoundException;
 import kr.ecommerce.be.server.domain.point.model.PointHistory;
 import kr.ecommerce.be.server.domain.point.model.PointHistoryType;
 import kr.ecommerce.be.server.domain.point.model.UserPoint;
-import kr.ecommerce.be.server.application.point.PointHistoryDto;
+import kr.ecommerce.be.server.application.point.dto.PointHistoryDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
