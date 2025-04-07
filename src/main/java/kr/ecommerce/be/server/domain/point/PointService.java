@@ -1,6 +1,7 @@
 package kr.ecommerce.be.server.domain.point;
 
 import jakarta.transaction.Transactional;
+import kr.ecommerce.be.server.application.point.dto.UserPointDto;
 import kr.ecommerce.be.server.domain.point.model.PointHistory;
 import kr.ecommerce.be.server.domain.point.model.PointHistoryType;
 import kr.ecommerce.be.server.domain.point.model.UserPoint;
@@ -20,9 +21,9 @@ public class PointService {
 
     private final PointRepository pointRepository;
 
-    public Long getPoint(Long userId) {
+    public UserPointDto getUserPoint(Long userId) {
         UserPoint userPoint = pointRepository.get(userId);
-        return userPoint.getPoint();
+        return UserPointDto.from(userPoint);
     }
 
     public List<PointHistoryDto> getHistory(Long userId, int page, int size, String sort) {
