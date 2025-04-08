@@ -1,18 +1,14 @@
 package kr.ecommerce.be.server.domain.point;
 
 import jakarta.transaction.Transactional;
-import kr.ecommerce.be.server.application.point.dto.UserPointDto;
-import kr.ecommerce.be.server.domain.point.model.PointHistory;
-import kr.ecommerce.be.server.domain.point.model.PointHistoryType;
-import kr.ecommerce.be.server.domain.point.model.UserPoint;
-import kr.ecommerce.be.server.application.point.dto.PointHistoryDto;
+import kr.ecommerce.be.server.domain.point.dto.*;
+import kr.ecommerce.be.server.domain.point.model.*;
+import kr.ecommerce.be.server.infrastructure.point.dto.GetHistoryRepositoryRequestDto;
+import kr.ecommerce.be.server.infrastructure.point.dto.GetPointRepositoryRequestDto;
+import kr.ecommerce.be.server.infrastructure.point.dto.SavePointHistoryRepoRequestDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -21,34 +17,37 @@ public class PointService {
 
     private final PointRepository pointRepository;
 
-    public UserPointDto getUserPoint(Long userId) {
-        UserPoint userPoint = pointRepository.get(userId);
-        return UserPointDto.from(userPoint);
+    public UserPointResponseDto getUserPoint(UserPointRequestDto reqService) {
+        GetPointRepositoryRequestDto reqRepository = new GetPointRepositoryRequestDto(reqService.userId());
+        UserPoint userPoint = pointRepository.get(reqRepository);
+        return UserPointResponseDto.from(userPoint);
     }
 
-    public List<PointHistoryDto> getHistory(Long userId, int page, int size, String sort) {
-        Pageable pageable = PageRequest.of(page - 1, size, Sort.by(Sort.Direction.DESC, sort));
-        List<PointHistory> historyList = pointRepository.getHistory(userId, pageable);
+    public List<PointHistoryResponseDto> getHistory(PointHistoryRequestDto reqService) {
+        GetHistoryRepositoryRequestDto reqRepository = new GetHistoryRepositoryRequestDto(
+                reqService.userId(), reqService.page(), reqService.size(), reqService.sort()
+        );
+        List<PointHistory> historyList = pointRepository.getHistory(reqRepository);
 
         return historyList.stream()
-            .map(PointHistoryDto::from)
+            .map(PointHistoryResponseDto::from)
             .toList();
     }
 
     @Transactional
-    public Long charge(Long userId, Long amount) {
-        UserPoint userPoint = pointRepository.get(userId);
-        userPoint.charge(amount);
+    public PointChargeResponseDto charge(PointChargeRequestDto reqService) {
+        GetPointRepositoryRequestDto requestDto = new GetPointRepositoryRequestDto(reqService.userId());
+        UserPoint userPoint = pointRepository.get(requestDto);
+        userPoint.charge(reqService.point());
         pointRepository.savePoint(userPoint);
 
-        PointHistory history = PointHistory.builder()
-                .userId(userId)
-                .point(amount)
-                .type(PointHistoryType.CHARGE)
-                .createdAt(LocalDateTime.now().toString())
-                .build();
-        pointRepository.saveHistory(history);
+        SavePointHistoryRepoRequestDto reqRepository = new SavePointHistoryRepoRequestDto(
+                reqService.userId(),
+                reqService.point(),
+                PointHistoryType.CHARGE
+        );
+        pointRepository.saveHistory(reqRepository);
 
-        return userPoint.getPoint();
+        return new PointChargeResponseDto(userPoint.getPoint());
     }
 }

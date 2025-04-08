@@ -1,5 +1,6 @@
-package kr.ecommerce.be.server.domain.point.model;
+package kr.ecommerce.be.server.domain.point.service.model;
 
+import kr.ecommerce.be.server.domain.point.model.UserPoint;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
