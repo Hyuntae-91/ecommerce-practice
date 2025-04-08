@@ -1,32 +1,32 @@
 package kr.ecommerce.be.server.domain.point.service.dto;
 
-import kr.ecommerce.be.server.domain.point.dto.UserPointResponseDto;
+import kr.ecommerce.be.server.domain.point.dto.PointChargeServiceRequest;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-class UserPointResponseDtoTest {
+class PointChargeServiceRequestTest {
 
     @Test
     void validInput_doesNotThrow() {
-        assertThatCode(() -> new UserPointResponseDto(1L, 1000L)).doesNotThrowAnyException();
+        assertThatCode(() -> new PointChargeServiceRequest(1L, 100L)).doesNotThrowAnyException();
     }
 
     @Test
     void nullUserId_throwsException() {
-        assertThatThrownBy(() -> new UserPointResponseDto(null, 1000L))
+        assertThatThrownBy(() -> new PointChargeServiceRequest(null, 100L))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void nullPoint_throwsException() {
-        assertThatThrownBy(() -> new UserPointResponseDto(1L, null))
+        assertThatThrownBy(() -> new PointChargeServiceRequest(1L, null))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void negativePoint_throwsException() {
-        assertThatThrownBy(() -> new UserPointResponseDto(1L, -100L))
+        assertThatThrownBy(() -> new PointChargeServiceRequest(1L, -100L))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
