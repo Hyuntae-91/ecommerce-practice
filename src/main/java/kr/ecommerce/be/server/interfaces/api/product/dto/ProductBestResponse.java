@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.application.product.dto;
+package kr.ecommerce.be.server.interfaces.api.product.dto;
 
 import kr.ecommerce.be.server.domain.product.model.Product;
 
