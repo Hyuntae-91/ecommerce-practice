@@ -7,8 +7,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kr.ecommerce.be.server.exception.ErrorResponse;
-import kr.ecommerce.be.server.application.coupon.CouponIssueResponse;
-import kr.ecommerce.be.server.application.coupon.CouponListResponse;
+import kr.ecommerce.be.server.interfaces.api.coupon.dto.CouponIssueResponse;
+import kr.ecommerce.be.server.interfaces.api.coupon.dto.CouponListResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
