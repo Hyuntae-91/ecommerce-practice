@@ -1,0 +1,82 @@
+package kr.ecommerce.be.server.application.payment;
+
+import jakarta.transaction.Transactional;
+import kr.ecommerce.be.server.application.payment.dto.PaymentFacadeMapperImpl;
+import kr.ecommerce.be.server.application.payment.dto.PaymentFacadeRequest;
+import kr.ecommerce.be.server.domain.coupon.CouponService;
+import kr.ecommerce.be.server.domain.coupon.dto.ApplyCouponDiscountServiceRequest;
+import kr.ecommerce.be.server.domain.coupon.dto.ApplyCouponDiscountServiceResponse;
+import kr.ecommerce.be.server.domain.order.dto.CreateOrderItemDto;
+import kr.ecommerce.be.server.domain.order.dto.CreateOrderServiceRequest;
+import kr.ecommerce.be.server.domain.order.dto.CreateOrderServiceResponse;
+import kr.ecommerce.be.server.domain.order.dto.UpdateOrderServiceRequest;
+import kr.ecommerce.be.server.domain.payment.dto.PaymentOrderItemDto;
+import kr.ecommerce.be.server.domain.payment.dto.PaymentServiceRequest;
+import kr.ecommerce.be.server.domain.payment.dto.PaymentServiceResponse;
+import kr.ecommerce.be.server.domain.payment.event.PaymentCompletedEvent;
+import kr.ecommerce.be.server.domain.point.PointService;
+import kr.ecommerce.be.server.domain.point.dto.UserPointServiceRequest;
+import kr.ecommerce.be.server.domain.point.dto.UserPointServiceResponse;
+import kr.ecommerce.be.server.domain.product.ProductService;
+import kr.ecommerce.be.server.application.payment.dto.PaymentFacadeMapper;
+import kr.ecommerce.be.server.domain.product.dto.ProductListSvcByIdsRequest;
+import kr.ecommerce.be.server.domain.product.dto.ProductTotalPriceResponse;
+import kr.ecommerce.be.server.interfaces.api.payment.dto.PaymentResponse;
+import kr.ecommerce.be.server.domain.payment.PaymentService;
+import kr.ecommerce.be.server.domain.order.OrderService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component
+@RequiredArgsConstructor
+public class PaymentFacade {
+
+    private final PointService pointService;
+    private final PaymentService paymentService;
+    private final ProductService productService;
+    private final OrderService orderService;
+    private final CouponService couponService;
+    private final ApplicationEventPublisher eventPublisher;
+    private final PaymentFacadeMapper paymentMapper = new PaymentFacadeMapperImpl();
+
+    @Transactional
+    public PaymentServiceResponse pay(PaymentFacadeRequest request) {
+        UserPointServiceRequest userPointServiceRequest = new UserPointServiceRequest(request.userId());
+        UserPointServiceResponse userPoint = pointService.getUserPoint(userPointServiceRequest);
+
+        List<CreateOrderItemDto> orderItems = request.products().stream()
+                .map(p -> new CreateOrderItemDto(p.itemId(), p.quantity()))
+                .toList();
+        CreateOrderServiceRequest createOrderRequest = new CreateOrderServiceRequest(
+                request.userId(), request.couponIssueId(), orderItems
+        );
+        CreateOrderServiceResponse orderIdDto = orderService.createOrder(createOrderRequest);
+
+        ProductListSvcByIdsRequest productListSvcReq = paymentMapper.toProductListSvcByIdsRequest(request.products());
+        ProductTotalPriceResponse totalPrice = productService.calculateTotalPrice(productListSvcReq);
+
+        long finalTotalPrice = totalPrice.totalPrice();
+        if (request.couponIssueId() != null && request.couponIssueId() > 0) {
+            ApplyCouponDiscountServiceResponse applyCouponPrice = couponService.applyCouponDiscount(
+                    new ApplyCouponDiscountServiceRequest(request.couponIssueId(), finalTotalPrice)
+            );
+            finalTotalPrice = applyCouponPrice.finalPrice();
+        }
+
+        orderService.updateTotalPrice(new UpdateOrderServiceRequest(orderIdDto.orderId(), finalTotalPrice));
+
+        List<PaymentOrderItemDto> orderAndOptionIds = request.products().stream()
+                .map(p -> new PaymentOrderItemDto(p.itemId(), p.optionId()))
+                .toList();
+        PaymentServiceRequest paymentServiceRequest = new PaymentServiceRequest(
+                request.userId(), totalPrice.totalPrice(), request.couponIssueId(), orderAndOptionIds
+        );
+        PaymentServiceResponse result = paymentService.pay(paymentServiceRequest);
+
+        eventPublisher.publishEvent(new PaymentCompletedEvent(result));
+        return result;
+    }
+}
