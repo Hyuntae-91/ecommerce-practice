@@ -1,6 +1,6 @@
 package kr.ecommerce.be.server.domain.point.service.dto;
 
-import kr.ecommerce.be.server.domain.point.dto.PointChargeServiceRequest;
+import kr.ecommerce.be.server.domain.point.dto.request.PointChargeServiceRequest;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;

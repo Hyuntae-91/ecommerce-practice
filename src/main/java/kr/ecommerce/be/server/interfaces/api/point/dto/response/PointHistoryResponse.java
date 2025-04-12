@@ -1,6 +1,6 @@
-package kr.ecommerce.be.server.interfaces.api.point.dto;
+package kr.ecommerce.be.server.interfaces.api.point.dto.response;
 
-import kr.ecommerce.be.server.domain.point.dto.PointHistoryServiceResponse;
+import kr.ecommerce.be.server.domain.point.dto.response.PointHistoryServiceResponse;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.domain.point.dto;
+package kr.ecommerce.be.server.domain.point.dto.request;
 
 public record PointChargeServiceRequest(
         Long userId,

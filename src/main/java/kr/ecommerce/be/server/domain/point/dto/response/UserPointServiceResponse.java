@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.domain.point.dto;
+package kr.ecommerce.be.server.domain.point.dto.response;
 
 import kr.ecommerce.be.server.domain.point.model.UserPoint;
 import lombok.Builder;

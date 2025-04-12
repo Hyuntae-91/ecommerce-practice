@@ -13,8 +13,6 @@ import kr.ecommerce.be.server.domain.payment.model.Payment;
 import kr.ecommerce.be.server.domain.point.PointRepository;
 import kr.ecommerce.be.server.domain.point.model.PointHistoryType;
 import kr.ecommerce.be.server.domain.point.model.UserPoint;
-import kr.ecommerce.be.server.infrastructure.point.dto.GetPointRepositoryRequestDto;
-import kr.ecommerce.be.server.infrastructure.point.dto.SavePointHistoryRepoRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -59,7 +57,7 @@ public class PaymentService {
                 option.validateEnoughStock(item.getQuantity());
             }
 
-            UserPoint userPoint = userPointRepository.get(new GetPointRepositoryRequestDto(userId));
+            UserPoint userPoint = userPointRepository.get(userId);
             userPoint.validateUsableBalance(totalPrice);
 
             for (OrderItem item : orderItems) {
@@ -76,12 +74,7 @@ public class PaymentService {
 
             userPoint.use(totalPrice);
             userPointRepository.savePoint(userPoint);
-            SavePointHistoryRepoRequestDto historyDto = new SavePointHistoryRepoRequestDto(
-                    userId,
-                    totalPrice,
-                    PointHistoryType.USE
-            );
-            userPointRepository.saveHistory(historyDto);
+            userPointRepository.saveHistory(userId, totalPrice, PointHistoryType.USE);
 
             Payment payment = Payment.of(
                     orderItems.get(0).getOrder().getId(),

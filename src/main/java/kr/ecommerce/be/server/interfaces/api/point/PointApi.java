@@ -7,7 +7,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kr.ecommerce.be.server.exception.ErrorResponse;
-import kr.ecommerce.be.server.interfaces.api.point.dto.*;
+import kr.ecommerce.be.server.interfaces.api.point.dto.request.PointChargeRequest;
+import kr.ecommerce.be.server.interfaces.api.point.dto.request.PointHistoryRequest;
+import kr.ecommerce.be.server.interfaces.api.point.dto.response.PointChargeResponse;
+import kr.ecommerce.be.server.interfaces.api.point.dto.response.PointHistoryResponse;
+import kr.ecommerce.be.server.interfaces.api.point.dto.response.PointResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

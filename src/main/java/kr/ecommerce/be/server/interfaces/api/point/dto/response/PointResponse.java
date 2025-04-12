@@ -1,6 +1,6 @@
-package kr.ecommerce.be.server.interfaces.api.point.dto;
+package kr.ecommerce.be.server.interfaces.api.point.dto.response;
 
-import kr.ecommerce.be.server.domain.point.dto.UserPointServiceResponse;
+import kr.ecommerce.be.server.domain.point.dto.response.UserPointServiceResponse;
 
 public record PointResponse(
         Long userId,
