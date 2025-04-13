@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.domain.product.dto;
+package kr.ecommerce.be.server.domain.product.dto.request;
 
 public record ProductListServiceRequest(
         int page,

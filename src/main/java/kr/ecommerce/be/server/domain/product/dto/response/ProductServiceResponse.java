@@ -1,6 +1,5 @@
-package kr.ecommerce.be.server.domain.product.dto;
+package kr.ecommerce.be.server.domain.product.dto.response;
 
-import kr.ecommerce.be.server.domain.product.model.Product;
 import java.util.List;
 
 public record ProductServiceResponse(

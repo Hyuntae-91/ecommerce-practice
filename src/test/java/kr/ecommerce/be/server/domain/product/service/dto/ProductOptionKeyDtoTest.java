@@ -1,6 +1,6 @@
 package kr.ecommerce.be.server.domain.product.service.dto;
 
-import kr.ecommerce.be.server.domain.product.dto.ProductOptionKeyDto;
+import kr.ecommerce.be.server.domain.product.dto.request.ProductOptionKeyDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

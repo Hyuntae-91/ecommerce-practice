@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.interfaces.api.product.dto;
+package kr.ecommerce.be.server.interfaces.api.product.dto.response;
 
 import kr.ecommerce.be.server.domain.product.model.Product;
 import lombok.Builder;

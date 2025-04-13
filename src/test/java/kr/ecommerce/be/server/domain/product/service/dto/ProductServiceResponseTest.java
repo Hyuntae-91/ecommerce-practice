@@ -1,7 +1,7 @@
 package kr.ecommerce.be.server.domain.product.service.dto;
 
-import kr.ecommerce.be.server.domain.product.dto.ProductOptionResponse;
-import kr.ecommerce.be.server.domain.product.dto.ProductServiceResponse;
+import kr.ecommerce.be.server.domain.product.dto.response.ProductOptionResponse;
+import kr.ecommerce.be.server.domain.product.dto.response.ProductServiceResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
