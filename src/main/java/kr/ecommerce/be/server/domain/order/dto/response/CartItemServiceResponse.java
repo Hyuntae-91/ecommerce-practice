@@ -1,12 +1,12 @@
-package kr.ecommerce.be.server.interfaces.api.order.dto;
+package kr.ecommerce.be.server.domain.order.dto.response;
 
 import java.util.List;
 
-public record GetCartItemsResponse(
-        List<CartItem> cartList,
+public record CartItemServiceResponse(
+        List<CartItemResponse> cartList,
         Long totalPrice
 ) {
-    public GetCartItemsResponse {
+    public CartItemServiceResponse {
         if (cartList == null || cartList.isEmpty()) {
             throw new IllegalArgumentException("cartList는 null이거나 비어 있을 수 없습니다.");
         }
@@ -15,4 +15,3 @@ public record GetCartItemsResponse(
         }
     }
 }
-

@@ -1,7 +1,7 @@
 package kr.ecommerce.be.server.domain.order.service.dto;
 
-import kr.ecommerce.be.server.domain.order.dto.CreateOrderItemDto;
-import kr.ecommerce.be.server.domain.order.dto.CreateOrderServiceRequest;
+import kr.ecommerce.be.server.domain.order.dto.request.CreateOrderItemDto;
+import kr.ecommerce.be.server.domain.order.dto.request.CreateOrderServiceRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

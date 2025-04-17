@@ -1,6 +1,6 @@
-package kr.ecommerce.be.server.interfaces.api.order.dto;
+package kr.ecommerce.be.server.interfaces.api.order.dto.response;
 
-import kr.ecommerce.be.server.domain.order.dto.CartItemResponse;
+import kr.ecommerce.be.server.domain.order.dto.response.CartItemResponse;
 
 public record CartItem(
         Long productId,

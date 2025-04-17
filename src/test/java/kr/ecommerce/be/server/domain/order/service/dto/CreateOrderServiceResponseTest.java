@@ -1,6 +1,6 @@
 package kr.ecommerce.be.server.domain.order.service.dto;
 
-import kr.ecommerce.be.server.domain.order.dto.CreateOrderServiceResponse;
+import kr.ecommerce.be.server.domain.order.dto.response.CreateOrderServiceResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

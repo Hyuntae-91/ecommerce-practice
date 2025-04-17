@@ -1,7 +1,7 @@
 package kr.ecommerce.be.server.domain.order.service.dto;
 
-import kr.ecommerce.be.server.domain.order.dto.AddCartServiceResponse;
-import kr.ecommerce.be.server.domain.order.dto.CartItemResponse;
+import kr.ecommerce.be.server.domain.order.dto.response.AddCartServiceResponse;
+import kr.ecommerce.be.server.domain.order.dto.response.CartItemResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

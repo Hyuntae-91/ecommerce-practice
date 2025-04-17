@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.domain.order;
+package kr.ecommerce.be.server.domain.order.repository;
 
 import kr.ecommerce.be.server.domain.order.model.Order;
 

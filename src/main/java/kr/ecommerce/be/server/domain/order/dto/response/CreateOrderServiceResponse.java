@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.domain.order.dto;
+package kr.ecommerce.be.server.domain.order.dto.response;
 
 public record CreateOrderServiceResponse(
         Long orderId

@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.domain.order.dto;
+package kr.ecommerce.be.server.domain.order.dto.request;
 
 public record UpdateOrderServiceRequest(
         Long orderId,

@@ -1,16 +1,16 @@
 package kr.ecommerce.be.server.application.order;
 
 import kr.ecommerce.be.server.application.order.dto.AddCartFacadeRequest;
-import kr.ecommerce.be.server.domain.order.dto.AddCartServiceRequest;
-import kr.ecommerce.be.server.domain.order.dto.AddCartServiceResponse;
+import kr.ecommerce.be.server.domain.order.dto.request.AddCartServiceRequest;
+import kr.ecommerce.be.server.domain.order.dto.response.AddCartServiceResponse;
 import kr.ecommerce.be.server.domain.point.dto.request.UserPointServiceRequest;
 import kr.ecommerce.be.server.domain.point.dto.response.UserPointServiceResponse;
 import kr.ecommerce.be.server.domain.product.dto.request.ProductServiceRequest;
 import kr.ecommerce.be.server.domain.product.dto.response.ProductServiceResponse;
-import kr.ecommerce.be.server.interfaces.api.order.dto.AddCartRequest;
-import kr.ecommerce.be.server.domain.order.OrderService;
-import kr.ecommerce.be.server.domain.point.PointService;
-import kr.ecommerce.be.server.domain.product.ProductService;
+import kr.ecommerce.be.server.interfaces.api.order.dto.request.AddCartRequest;
+import kr.ecommerce.be.server.domain.order.service.OrderService;
+import kr.ecommerce.be.server.domain.point.service.PointService;
+import kr.ecommerce.be.server.domain.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

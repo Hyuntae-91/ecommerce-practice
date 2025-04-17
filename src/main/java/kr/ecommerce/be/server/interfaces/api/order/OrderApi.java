@@ -7,8 +7,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kr.ecommerce.be.server.exception.ErrorResponse;
-import kr.ecommerce.be.server.interfaces.api.order.dto.AddCartRequest;
-import kr.ecommerce.be.server.interfaces.api.order.dto.GetCartItemsResponse;
+import kr.ecommerce.be.server.interfaces.api.order.dto.request.AddCartRequest;
+import kr.ecommerce.be.server.interfaces.api.order.dto.response.GetCartItemsResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
