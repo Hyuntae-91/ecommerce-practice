@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.domain.product;
+package kr.ecommerce.be.server.domain.product.model;
 
 public enum ProductStates {
     DELETED(-1),

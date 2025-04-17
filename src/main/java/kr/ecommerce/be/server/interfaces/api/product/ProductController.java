@@ -1,7 +1,7 @@
 package kr.ecommerce.be.server.interfaces.api.product;
 
 import jakarta.validation.Valid;
-import kr.ecommerce.be.server.domain.product.ProductService;
+import kr.ecommerce.be.server.domain.product.service.ProductService;
 import kr.ecommerce.be.server.domain.product.dto.request.ProductListServiceRequest;
 import kr.ecommerce.be.server.domain.product.dto.request.ProductServiceRequest;
 import kr.ecommerce.be.server.exception.ErrorResponse;
