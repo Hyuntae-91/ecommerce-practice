@@ -1,6 +1,6 @@
-package kr.ecommerce.be.server.interfaces.api.payment.dto;
+package kr.ecommerce.be.server.interfaces.api.payment.dto.response;
 
-import kr.ecommerce.be.server.domain.payment.dto.PaymentServiceResponse;
+import kr.ecommerce.be.server.domain.payment.dto.response.PaymentServiceResponse;
 
 public record PaymentResponse(
         Long paymentId,

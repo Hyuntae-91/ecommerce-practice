@@ -1,8 +1,8 @@
 package kr.ecommerce.be.server.application.payment.dto;
 
 import kr.ecommerce.be.server.domain.product.dto.request.ProductOptionKeyDto;
-import kr.ecommerce.be.server.interfaces.api.payment.dto.PaymentProductDto;
-import kr.ecommerce.be.server.interfaces.api.payment.dto.PaymentRequest;
+import kr.ecommerce.be.server.interfaces.api.payment.dto.request.PaymentProductDto;
+import kr.ecommerce.be.server.interfaces.api.payment.dto.request.PaymentRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

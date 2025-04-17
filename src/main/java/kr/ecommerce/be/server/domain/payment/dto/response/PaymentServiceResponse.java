@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.domain.payment.dto;
+package kr.ecommerce.be.server.domain.payment.dto.response;
 
 public record PaymentServiceResponse (
         Long paymentId,

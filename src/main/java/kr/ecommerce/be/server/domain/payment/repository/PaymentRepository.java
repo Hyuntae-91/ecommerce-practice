@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.domain.payment;
+package kr.ecommerce.be.server.domain.payment.repository;
 
 import kr.ecommerce.be.server.domain.payment.model.Payment;
 
