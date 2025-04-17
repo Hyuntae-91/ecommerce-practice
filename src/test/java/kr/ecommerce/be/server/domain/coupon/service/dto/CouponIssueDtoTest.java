@@ -1,9 +1,6 @@
 package kr.ecommerce.be.server.domain.coupon.service.dto;
 
-import kr.ecommerce.be.server.domain.coupon.dto.CouponIssueDto;
-import kr.ecommerce.be.server.domain.coupon.model.Coupon;
-import kr.ecommerce.be.server.domain.coupon.model.CouponIssue;
-import kr.ecommerce.be.server.domain.coupon.model.CouponType;
+import kr.ecommerce.be.server.domain.coupon.dto.response.CouponIssueDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

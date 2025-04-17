@@ -1,6 +1,6 @@
 package kr.ecommerce.be.server.interfaces.api.coupon.dto;
 
-import kr.ecommerce.be.server.domain.coupon.dto.GetCouponsServiceResponse;
+import kr.ecommerce.be.server.domain.coupon.dto.response.GetCouponsServiceResponse;
 
 import java.util.List;
 

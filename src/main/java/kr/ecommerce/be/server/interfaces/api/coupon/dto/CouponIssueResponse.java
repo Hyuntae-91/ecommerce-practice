@@ -1,6 +1,6 @@
 package kr.ecommerce.be.server.interfaces.api.coupon.dto;
 
-import kr.ecommerce.be.server.domain.coupon.dto.IssueNewCouponServiceResponse;
+import kr.ecommerce.be.server.domain.coupon.dto.response.IssueNewCouponServiceResponse;
 
 public record CouponIssueResponse(
         Long couponId,

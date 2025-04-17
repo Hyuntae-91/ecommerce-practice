@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.domain.coupon;
+package kr.ecommerce.be.server.domain.coupon.repository;
 
 import kr.ecommerce.be.server.domain.coupon.model.Coupon;
 

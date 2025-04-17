@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.domain.coupon.dto;
+package kr.ecommerce.be.server.domain.coupon.dto.response;
 
 import java.util.List;
 
