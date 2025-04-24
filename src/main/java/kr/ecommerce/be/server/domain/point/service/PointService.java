@@ -2,10 +2,8 @@ package kr.ecommerce.be.server.domain.point.service;
 
 import kr.ecommerce.be.server.domain.point.dto.UserPointMapper;
 import kr.ecommerce.be.server.domain.point.dto.request.PointChargeServiceRequest;
-import kr.ecommerce.be.server.domain.point.dto.request.PointHistoryServiceRequest;
 import kr.ecommerce.be.server.domain.point.dto.request.UserPointServiceRequest;
 import kr.ecommerce.be.server.domain.point.dto.response.PointChargeServiceResponse;
-import kr.ecommerce.be.server.domain.point.dto.response.PointHistoryServiceResponse;
 import kr.ecommerce.be.server.domain.point.dto.response.UserPointServiceResponse;
 import kr.ecommerce.be.server.domain.point.model.*;
 import kr.ecommerce.be.server.domain.point.repository.PointHistoryRepository;
