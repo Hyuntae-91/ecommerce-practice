@@ -1,5 +1,6 @@
 package kr.ecommerce.be.server.domain.point.service;
 
+import kr.ecommerce.be.server.common.annotation.OptimisticRetry;
 import kr.ecommerce.be.server.domain.point.dto.UserPointMapper;
 import kr.ecommerce.be.server.domain.point.dto.request.PointChargeServiceRequest;
 import kr.ecommerce.be.server.domain.point.dto.request.UserPointServiceRequest;
@@ -22,14 +23,14 @@ public class PointService {
     private final PointHistoryRepository pointHistoryRepository;
     private final UserPointMapper userPointMapper;
 
-    @Transactional(readOnly = true)
+    @Transactional
     public UserPointServiceResponse getUserPoint(UserPointServiceRequest reqService) {
-        return userPointMapper.toUserPointResponse(pointRepository.get(reqService.userId()));
+        return userPointMapper.toUserPointResponse(pointRepository.findWithLockByUserId(reqService.userId()));
     }
 
     @Transactional
     public PointChargeServiceResponse charge(PointChargeServiceRequest reqService) {
-        UserPoint userPoint = pointRepository.get(reqService.userId());
+        UserPoint userPoint = pointRepository.findWithLockByUserId(reqService.userId());
         userPoint.charge(reqService.point());
         pointRepository.savePoint(userPoint);
         pointHistoryRepository.saveHistory(reqService.userId(), reqService.point(), PointHistoryType.CHARGE);
