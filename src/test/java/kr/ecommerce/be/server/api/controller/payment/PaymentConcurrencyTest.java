@@ -1,7 +1,5 @@
 package kr.ecommerce.be.server.api.controller.payment;
 
-import jakarta.transaction.Transactional;
-import kr.ecommerce.be.server.common.AbstractIntegrationTestSupport;
 import kr.ecommerce.be.server.domain.coupon.model.Coupon;
 import kr.ecommerce.be.server.domain.coupon.model.CouponIssue;
 import kr.ecommerce.be.server.domain.coupon.model.CouponType;
