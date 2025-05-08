@@ -2,6 +2,7 @@ package kr.ecommerce.be.server.domain.point.dto;
 
 import kr.ecommerce.be.server.domain.point.dto.response.PointChargeServiceResponse;
 import kr.ecommerce.be.server.domain.point.dto.response.PointHistoryServiceResponse;
+import kr.ecommerce.be.server.domain.point.dto.response.PointUseServiceResponse;
 import kr.ecommerce.be.server.domain.point.dto.response.UserPointServiceResponse;
 import kr.ecommerce.be.server.domain.point.model.PointHistory;
 import kr.ecommerce.be.server.domain.point.model.UserPoint;
@@ -18,6 +19,8 @@ public interface UserPointMapper {
     UserPointServiceResponse toUserPointResponse(UserPoint userPoint);
 
     PointChargeServiceResponse toUserPointChargeResponse(UserPoint userPoint);
+
+    PointUseServiceResponse toUserPointUseResponse(UserPoint userPoint);
 
     PointHistoryServiceResponse toUserPointHistoryResponse(PointHistory pointHistory);
 
