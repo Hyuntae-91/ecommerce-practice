@@ -3,6 +3,7 @@ package kr.ecommerce.be.server.api.controller.payment;
 import kr.ecommerce.be.server.domain.coupon.model.Coupon;
 import kr.ecommerce.be.server.domain.coupon.model.CouponIssue;
 import kr.ecommerce.be.server.domain.coupon.model.CouponType;
+import kr.ecommerce.be.server.domain.coupon.repository.CouponRedisRepository;
 import kr.ecommerce.be.server.domain.order.model.OrderItem;
 import kr.ecommerce.be.server.domain.order.model.OrderOption;
 import kr.ecommerce.be.server.domain.payment.repository.PaymentRepository;
@@ -104,6 +105,9 @@ public class PaymentConcurrencyTest {
 
     @Autowired
     private RepositoryCleaner repositoryCleaner;
+
+    @Autowired
+    private CouponRedisRepository couponRedisRepository;
 
     @BeforeEach
     void cleanup() {
@@ -288,7 +292,7 @@ public class PaymentConcurrencyTest {
                 .description("중복방지 쿠폰")
                 .discount(1000)
                 .quantity(1)
-                .issued(1)
+                .state(1)
                 .expirationDays(7)
                 .createdAt("2025-04-16T00:00:00").updatedAt("2025-04-16T00:00:00")
                 .build());
