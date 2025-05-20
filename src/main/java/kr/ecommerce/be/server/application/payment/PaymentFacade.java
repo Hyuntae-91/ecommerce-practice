@@ -9,6 +9,7 @@ import kr.ecommerce.be.server.domain.coupon.service.CouponService;
 import kr.ecommerce.be.server.domain.coupon.dto.response.ApplyCouponDiscountServiceResponse;
 import kr.ecommerce.be.server.domain.order.dto.response.CreateOrderServiceResponse;
 import kr.ecommerce.be.server.domain.order.dto.request.UpdateOrderServiceRequest;
+import kr.ecommerce.be.server.domain.order.service.OrderItemService;
 import kr.ecommerce.be.server.domain.payment.dto.request.PaymentOrderItemDto;
 import kr.ecommerce.be.server.domain.payment.dto.request.PaymentServiceRequest;
 import kr.ecommerce.be.server.domain.payment.dto.response.PaymentServiceResponse;
@@ -38,6 +39,7 @@ public class PaymentFacade {
     private final PaymentService paymentService;
     private final ProductService productService;
     private final OrderService orderService;
+    private final OrderItemService orderItemService;
     private final CouponService couponService;
     private final ApplicationEventPublisher eventPublisher;
     private final PaymentFacadeMapper paymentMapper = new PaymentFacadeMapperImpl();

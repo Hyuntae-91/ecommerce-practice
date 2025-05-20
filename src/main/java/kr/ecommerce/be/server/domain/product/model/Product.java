@@ -3,6 +3,9 @@ package kr.ecommerce.be.server.domain.product.model;
 import jakarta.persistence.*;
 import kr.ecommerce.be.server.domain.order.model.OrderItem;
 import kr.ecommerce.be.server.domain.order.model.OrderOption;
+import kr.ecommerce.be.server.domain.product.dto.ProductMapper;
+import kr.ecommerce.be.server.domain.product.dto.response.ProductOptionResponse;
+import kr.ecommerce.be.server.domain.product.dto.response.ProductServiceResponse;
 import lombok.*;
 
 import java.util.ArrayList;
