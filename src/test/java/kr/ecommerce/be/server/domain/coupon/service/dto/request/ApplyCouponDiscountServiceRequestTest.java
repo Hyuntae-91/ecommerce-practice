@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.domain.coupon.service.dto;
+package kr.ecommerce.be.server.domain.coupon.service.dto.request;
 
 import kr.ecommerce.be.server.domain.coupon.dto.request.ApplyCouponDiscountServiceRequest;
 import org.junit.jupiter.api.DisplayName;
