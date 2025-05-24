@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.domain.payment.service.dto;
+package kr.ecommerce.be.server.domain.payment.service.dto.request;
 
 import kr.ecommerce.be.server.domain.payment.dto.request.PaymentOrderItemDto;
 import org.junit.jupiter.api.DisplayName;
