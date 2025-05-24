@@ -1,5 +1,6 @@
 package kr.ecommerce.be.server.domain.coupon.event;
 
+import kr.ecommerce.be.server.domain.coupon.dto.event.CouponRollbackEvent;
 import kr.ecommerce.be.server.domain.coupon.repository.CouponRedisRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
