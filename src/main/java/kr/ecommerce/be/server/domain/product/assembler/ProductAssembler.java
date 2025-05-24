@@ -1,7 +1,7 @@
 package kr.ecommerce.be.server.domain.product.assembler;
 
 import kr.ecommerce.be.server.domain.order.model.OrderOption;
-import kr.ecommerce.be.server.domain.product.dto.ProductMapper;
+import kr.ecommerce.be.server.domain.product.mapper.ProductMapper;
 import kr.ecommerce.be.server.domain.product.model.Product;
 import kr.ecommerce.be.server.domain.product.dto.response.ProductServiceResponse;
 import kr.ecommerce.be.server.domain.product.dto.response.ProductOptionResponse;

@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.domain.product.event;
+package kr.ecommerce.be.server.domain.product.dto.event;
 
 import java.util.List;
 

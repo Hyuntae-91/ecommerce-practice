@@ -1,17 +1,18 @@
-package kr.ecommerce.be.server.domain.product.dto;
+package kr.ecommerce.be.server.domain.product.mapper;
 
+import kr.ecommerce.be.server.domain.order.dto.event.OrderCreatedEvent;
+import kr.ecommerce.be.server.domain.product.dto.event.ProductTotalPriceRequestedEvent;
 import kr.ecommerce.be.server.domain.order.model.OrderOption;
+import kr.ecommerce.be.server.domain.product.dto.event.ProductTotalPriceCompletedEvent;
 import kr.ecommerce.be.server.domain.product.dto.request.ProductOptionKeyDto;
 import kr.ecommerce.be.server.domain.product.dto.response.ProductOptionResponse;
 import kr.ecommerce.be.server.domain.product.dto.response.ProductServiceResponse;
+import kr.ecommerce.be.server.domain.product.dto.response.ProductTotalPriceResponse;
 import kr.ecommerce.be.server.domain.product.model.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
@@ -32,6 +33,27 @@ public interface ProductMapper {
         if (dtoList == null) return List.of();
         return dtoList.stream()
                 .map(ProductOptionKeyDto::productId)
+                .distinct()
                 .toList();
+    }
+
+    ProductTotalPriceRequestedEvent toProductTotalPriceRequestedEvent(OrderCreatedEvent event);
+
+    default ProductTotalPriceCompletedEvent toProductTotalPriceCompletedEvent(
+            OrderCreatedEvent event,
+            ProductTotalPriceResponse response
+    ) {
+        List<Long> productIds = event.items().stream()
+                .map(ProductOptionKeyDto::productId)
+                .distinct()
+                .toList();
+
+        return new ProductTotalPriceCompletedEvent(
+                event.orderId(),
+                event.userId(),
+                event.couponId(),
+                response.totalPrice(),
+                productIds
+        );
     }
 }
