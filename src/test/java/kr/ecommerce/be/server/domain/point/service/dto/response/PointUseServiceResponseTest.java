@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.domain.point.service.dto;
+package kr.ecommerce.be.server.domain.point.service.dto.response;
 
 import kr.ecommerce.be.server.domain.point.dto.response.PointUseServiceResponse;
 import org.junit.jupiter.api.DisplayName;
