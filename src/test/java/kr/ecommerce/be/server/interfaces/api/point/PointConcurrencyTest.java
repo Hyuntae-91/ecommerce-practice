@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.api.controller.point;
+package kr.ecommerce.be.server.interfaces.api.point;
 
 import kr.ecommerce.be.server.domain.point.dto.request.UserPointServiceRequest;
 import kr.ecommerce.be.server.domain.point.dto.response.UserPointServiceResponse;

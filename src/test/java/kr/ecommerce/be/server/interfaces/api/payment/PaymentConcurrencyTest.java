@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.api.controller.payment;
+package kr.ecommerce.be.server.interfaces.api.payment;
 
 import kr.ecommerce.be.server.domain.coupon.model.Coupon;
 import kr.ecommerce.be.server.domain.coupon.model.CouponIssue;

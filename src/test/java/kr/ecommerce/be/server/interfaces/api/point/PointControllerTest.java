@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.api.controller.point;
+package kr.ecommerce.be.server.interfaces.api.point;
 
 import kr.ecommerce.be.server.domain.point.model.PointHistory;
 import kr.ecommerce.be.server.domain.point.model.PointHistoryType;

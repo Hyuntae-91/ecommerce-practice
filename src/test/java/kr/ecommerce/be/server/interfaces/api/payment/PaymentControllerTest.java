@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.api.controller.payment;
+package kr.ecommerce.be.server.interfaces.api.payment;
 
 import com.jayway.jsonpath.JsonPath;
 import kr.ecommerce.be.server.domain.coupon.mapper.CouponJsonMapper;

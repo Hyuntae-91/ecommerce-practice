@@ -1,6 +1,5 @@
-package kr.ecommerce.be.server.api.controller.product;
+package kr.ecommerce.be.server.interfaces.api.product;
 
-import kr.ecommerce.be.server.domain.order.model.Order;
 import kr.ecommerce.be.server.domain.order.model.OrderItem;
 import kr.ecommerce.be.server.domain.order.model.OrderOption;
 import kr.ecommerce.be.server.domain.order.repository.OrderOptionRepository;

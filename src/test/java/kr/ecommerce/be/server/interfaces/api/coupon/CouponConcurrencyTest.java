@@ -1,4 +1,4 @@
-package kr.ecommerce.be.server.api.controller.coupon;
+package kr.ecommerce.be.server.interfaces.api.coupon;
 
 import kr.ecommerce.be.server.domain.coupon.mapper.CouponJsonMapper;
 import kr.ecommerce.be.server.domain.coupon.model.Coupon;
