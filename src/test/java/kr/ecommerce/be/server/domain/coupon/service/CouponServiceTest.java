@@ -9,7 +9,6 @@ import kr.ecommerce.be.server.domain.coupon.repository.CouponRepository;
 import kr.ecommerce.be.server.domain.coupon.model.Coupon;
 import kr.ecommerce.be.server.domain.coupon.model.CouponType;
 import kr.ecommerce.be.server.interfaces.event.coupon.payload.CouponIssuePayload;
-import kr.ecommerce.be.server.interfaces.event.coupon.payload.CouponUsePayload;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -31,7 +30,6 @@ class CouponServiceTest {
     private CouponRedisRepository couponRedisRepository;
     private CouponService couponService;
     private MessagePublisher<CouponIssuePayload> couponIssuePayloadPublisher;
-    private MessagePublisher<CouponUsePayload> couponUsePayloadPublisher;
 
     @BeforeEach
     void setUp() {
@@ -39,14 +37,12 @@ class CouponServiceTest {
         couponIssueRepository = mock(CouponIssueRepository.class);
         couponRedisRepository = mock(CouponRedisRepository.class);
         couponIssuePayloadPublisher = mock(MessagePublisher.class);
-        couponUsePayloadPublisher = mock(MessagePublisher.class);
 
         couponService = new CouponService(
                 couponRepository,
                 couponIssueRepository,
                 couponRedisRepository,
-                couponIssuePayloadPublisher,
-                couponUsePayloadPublisher
+                couponIssuePayloadPublisher
         );
     }
 

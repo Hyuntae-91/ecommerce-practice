@@ -1,15 +1,16 @@
 package kr.ecommerce.be.server.domain.point.mapper;
 
-import kr.ecommerce.be.server.domain.coupon.dto.event.ApplyCouponDiscountCompletedEvent;
-import kr.ecommerce.be.server.domain.point.dto.event.PointUsedCompletedEvent;
+import kr.ecommerce.be.server.domain.point.dto.request.PointUseRollbackRequest;
 import kr.ecommerce.be.server.domain.point.dto.request.PointUseServiceRequest;
-import kr.ecommerce.be.server.domain.point.dto.response.PointChargeServiceResponse;
-import kr.ecommerce.be.server.domain.point.dto.response.PointHistoryServiceResponse;
-import kr.ecommerce.be.server.domain.point.dto.response.PointUseServiceResponse;
-import kr.ecommerce.be.server.domain.point.dto.response.UserPointServiceResponse;
+import kr.ecommerce.be.server.domain.point.dto.response.*;
 import kr.ecommerce.be.server.domain.point.model.PointHistory;
 import kr.ecommerce.be.server.domain.point.model.UserPoint;
+import kr.ecommerce.be.server.interfaces.event.coupon.payload.CouponApplyCompletedPayload;
+import kr.ecommerce.be.server.interfaces.event.payment.payload.PaymentRollbackPayload;
+import kr.ecommerce.be.server.interfaces.event.point.payload.PointUseRollbackPayload;
+import kr.ecommerce.be.server.interfaces.event.point.payload.PointUsedCompletedPayload;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -29,19 +30,27 @@ public interface UserPointMapper {
 
     List<PointHistoryServiceResponse> toHistoryListResponse(List<PointHistory> pointHistories);
 
-    default PointUseServiceRequest toPointUseServiceRequest(ApplyCouponDiscountCompletedEvent event) {
+    PointUseRollbackPayload toPointUseRollbackPayload(PaymentRollbackPayload event);
+    PointUseRollbackPayload toPointUseRollbackPayload(CouponApplyCompletedPayload event);
+
+    @Mapping(source = "usedPoint", target = "point")
+    PointUseRollbackRequest toPointUseRollbackRequest(PaymentRollbackPayload event);
+
+    default PointUseServiceRequest toPointUseServiceRequest(CouponApplyCompletedPayload event) {
         return new PointUseServiceRequest(event.userId(), event.finalPrice());
     }
 
-    default PointUsedCompletedEvent toPointUsedCompletedEvent(
-            ApplyCouponDiscountCompletedEvent event,
+    default PointUsedCompletedPayload toPointUsedCompletedPayload(
+            CouponApplyCompletedPayload event,
             PointUseServiceResponse response
     ) {
-        return new PointUsedCompletedEvent(
+        return new PointUsedCompletedPayload(
                 event.orderId(),
                 event.userId(),
                 response.point(),
-                event.productIds()
+                event.couponId(),
+                event.couponIssueId(),
+                event.items()
         );
     }
 }

@@ -1,12 +1,14 @@
 package kr.ecommerce.be.server.domain.order.mapper;
 
-import kr.ecommerce.be.server.domain.order.dto.request.CreateOrderOptionDto;
-import kr.ecommerce.be.server.domain.order.dto.request.CreateOrderServiceRequest;
-import kr.ecommerce.be.server.domain.order.dto.request.UpdateOrderServiceRequest;
+import kr.ecommerce.be.server.domain.order.dto.request.*;
 import kr.ecommerce.be.server.domain.order.model.OrderItem;
 import kr.ecommerce.be.server.domain.payment.dto.event.PaymentCompletedEvent;
 import kr.ecommerce.be.server.domain.product.dto.request.ProductOptionKeyDto;
 import kr.ecommerce.be.server.interfaces.api.payment.dto.request.PaymentRequest;
+import kr.ecommerce.be.server.interfaces.event.coupon.payload.CouponUseRollbackPayload;
+import kr.ecommerce.be.server.interfaces.event.payment.payload.PaymentCompletedPayload;
+import kr.ecommerce.be.server.interfaces.event.product.payload.ProductDataIds;
+import kr.ecommerce.be.server.interfaces.event.product.payload.ProductTotalPriceFailRollbackPayload;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -21,15 +23,20 @@ public interface OrderMapper {
         return new CreateOrderServiceRequest(userId, request.couponId(), request.couponIssueId(), options);
     }
 
-    default List<ProductOptionKeyDto> toProductOptionKeyDtoList(List<OrderItem> dtoList) {
+    default List<ProductDataIds> toProductDataIds(List<OrderItem> dtoList) {
         return dtoList.stream()
-                .map(item -> new ProductOptionKeyDto(
+                .map(item -> new ProductDataIds(
                         item.getProductId(),
                         item.getOptionId(),
-                        item.getId() // 이게 itemId로 사용됨
+                        item.getId(),
+                        item.getQuantity()
                 ))
                 .toList();
     }
 
-    UpdateOrderServiceRequest toUpdateOrderRequest(PaymentCompletedEvent event);
+    UpdateOrderServiceRequest toUpdateOrderRequest(PaymentCompletedPayload event);
+
+    UpdateOrderStateRequest toUpdateOrderStateRequest(CouponUseRollbackPayload event, Integer state);
+
+    OrderStockRollbackRequest toOrderStockRollbackRequest(CouponUseRollbackPayload event);
 }

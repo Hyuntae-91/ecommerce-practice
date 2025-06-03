@@ -1,11 +1,8 @@
 package kr.ecommerce.be.server.domain.point.service;
 
 import kr.ecommerce.be.server.common.aop.lock.DistributedLock;
+import kr.ecommerce.be.server.domain.point.dto.request.*;
 import kr.ecommerce.be.server.domain.point.mapper.UserPointMapper;
-import kr.ecommerce.be.server.domain.point.dto.request.PointChargeServiceRequest;
-import kr.ecommerce.be.server.domain.point.dto.request.PointUseServiceRequest;
-import kr.ecommerce.be.server.domain.point.dto.request.PointValidateUsableRequest;
-import kr.ecommerce.be.server.domain.point.dto.request.UserPointServiceRequest;
 import kr.ecommerce.be.server.domain.point.dto.response.PointChargeServiceResponse;
 import kr.ecommerce.be.server.domain.point.dto.response.PointUseServiceResponse;
 import kr.ecommerce.be.server.domain.point.dto.response.UserPointServiceResponse;
@@ -56,6 +53,15 @@ public class PointService {
         pointHistoryRepository.saveHistory(reqService.userId(), reqService.point(), PointHistoryType.USE);
 
         return userPointMapper.toUserPointUseResponse(userPoint);
+    }
+
+    @Transactional
+    @CacheEvict(value = "userPoint", key = "#root.args[0].userId()")
+    public void useRollback(PointUseRollbackRequest reqService) {
+        UserPoint userPoint = pointRepository.findWithLockByUserId(reqService.userId());
+        userPoint.charge(reqService.point());
+        pointRepository.savePoint(userPoint);
+        pointHistoryRepository.saveHistory(reqService.userId(), reqService.point(), PointHistoryType.REFUND);
     }
 
     public void validateUsable(PointValidateUsableRequest reqService) {
